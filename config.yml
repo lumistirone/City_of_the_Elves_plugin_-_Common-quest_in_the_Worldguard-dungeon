@@ -1,0 +1,55 @@
+#The config file :
+#This is just a config file, not a lang file.
+#To have the text, go in the lang.yml, thanks.
+
+#The Dungeon Worlguard Zone
+WorldguardZone: 'dungeons'
+
+#Put 'name' if you want to detect the npc with his name. 
+#Put 'id' if you want to detect the npc with his id.
+#Put 'all' if you want to detect the npc with his id and name.
+HowVerify: 'all'
+
+#The name of the NPC
+NPCName: 'Messis'
+
+#The Id of the NPC
+NPCId: 2
+
+#Material informations
+material: WHEAT_SEEDS
+unite: 1
+DisplayName: '&fGraîne &eétrange'
+Lore: '&fGraîne &eétrange'
+
+hasEnchantment: true
+hideEnchantment: true
+
+#Ingredients
+Ingredient1_number_max: 5 #The maximum number of ingredients 1.
+Ingredient2_number_max: 5 #The maximum number of ingredients 2.
+Ingredient3_number_max: 5 #The maximum number of ingredients 3.
+
+#If it's true, nobody can do the quest. The quest is blocked.
+IsBlocked: false
+
+#If it's true, you activate the dungeon enter message.
+IsMessageEnter: true
+
+#If it's true, you activate the dungeon left message.
+IsMessageLeft: true
+
+#If it's true, a broadcast is performed on the Dungeon chat when a player ended the quest. 
+IsSendBroadcastCollect: true
+
+#If it's true, the dungeon entrance broadcast will be sent to the clicker player.
+NotBroadcastPlayerFirstStart: false
+
+#If it's true, if a player catch the last ingredient in a categorie, a broadcast is displayed.
+AnnonceFullIngredientInCategorie: true
+
+#If it's true, if a player catch a ingredient while all ingredients is catched, a broadcast is displayed.
+BeforeHaveAll: true
+
+#If it's true, if a player catch a ingredient while all ingredients in categorie is catched, a broadcast is displayed.
+BeforeHaveAllInCategorie: true
