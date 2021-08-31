@@ -1,0 +1,9 @@
+name: QueteMessisCiteDesElfes
+main: fr.margotfille.cdeqc.main
+version: 1.16
+author: margotfille
+depend: [WorldGuard, Citizens]
+api-version: 1.16
+commands:
+    grabblocksquest:
+        description: Recuppère un objet
