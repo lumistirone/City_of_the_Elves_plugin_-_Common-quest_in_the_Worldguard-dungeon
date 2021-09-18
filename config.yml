@@ -8,7 +8,7 @@ WorldguardZone: 'dungeons'
 #Put 'name' if you want to detect the npc with his name. 
 #Put 'id' if you want to detect the npc with his id.
 #Put 'all' if you want to detect the npc with his id and name.
-HowVerify: 'all'
+HowVerify: 'id'
 
 #The name of the NPC
 NPCName: 'Messis'
@@ -19,34 +19,37 @@ NPCId: 2
 #Material informations
 material: WHEAT_SEEDS
 unite: 1
-DisplayName: '&fGraîne &eétrange'
-Lore: '&fGraîne &eétrange, WTF'
+DisplayName: '&6Germe ensorcelée verte'
+Lore: "&7&oCet objet est l'une des trois graines;&7&opermettant d'accéder au coeur de la forêt;;&eObjet de quête"
 
-hasEnchantment: true
-hideEnchantment: true
+hasEnchantment: false
+hideEnchantment: false
 
 #Ingredients
-Ingredient1_number_max: 1 #The maximum number of ingredients 1.
-Ingredient2_number_max: 1 #The maximum number of ingredients 2.
-Ingredient3_number_max: 1 #The maximum number of ingredients 3.
+Ingredient1_number_max: 5 #The maximum number of ingredients 1.
+Ingredient2_number_max: 3 #The maximum number of ingredients 2.
+Ingredient3_number_max: 5 #The maximum number of ingredients 3.
 
 #If it's true, nobody can do the quest. The quest is blocked.
 IsBlocked: false
-
 #If it's true, you activate the dungeon enter message.
-IsMessageEnter: true
+IsMessageEnter: false
 
 #If it's true, you activate the dungeon left message.
-IsMessageLeft: true
+IsMessageLeft: false
 
 #If it's true, a broadcast is performed on the Dungeon chat when a player ended the quest. 
 IsSendBroadcastCollect: true
 
 #If it's true, the dungeon entrance broadcast will be sent to the clicker player.
-NotBroadcastPlayerFirstStart: false
+NotBroadcastPlayerFirstStart: true
 
 #If it's true, if a player catch a ingredient, a broadcast is displayed.
 MoreIngredient: true
 
 #If it's true, if a player catch the last ingredient in a categorie, a broadcast is displayed.
 IhaveAllIngredientsInCategories: true
+
+#Ticks
+start_tick: 20
+finish_tick: 20

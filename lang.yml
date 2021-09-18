@@ -2,21 +2,21 @@
 donthavepermission: "&fUn &epouvoir magique &fvous &eempêche &fde &efaire &fcela..."
 
 #Ingredients Name
-ingredient1name: "???"
-ingredient2name: "???"
-ingredient3name: "???"
+ingredient1name: "Champignon corrompu"
+ingredient2name: "Dose de miel"
+ingredient3name: "Fleur de lotus"
 
 #Scoreboard
 title: "&eQuête de Messis"
-sub-title: "Liste des ingredients :"
-ingredient1score: "{ingredient-name} | {quantity}"
-ingredient2score: "{ingredient-name} | {quantity}" 
-ingredient3score: "{ingredient-name} | {quantity}"
+sub-title: "Liste des ingrédients :"
+ingredient1score: "{ingredient-name} | {quantity}/{max-quantity}"
+ingredient2score: "{ingredient-name} | {quantity}/{max-quantity}" 
+ingredient3score: "{ingredient-name} | {quantity}/{max-quantity}"
 
 #Scoreboard finish
-ingredient1scorefinish: "&a{ingredient-name} | {quantity}"
-ingredient2scorefinish: "&a{ingredient-name} | {quantity}"
-ingredient3scorefinish: "&a{ingredient-name} | {quantity}"
+ingredient1scorefinish: "&a{ingredient-name} | {quantity}/{max-quantity}"
+ingredient2scorefinish: "&a{ingredient-name} | {quantity}/{max-quantity}"
+ingredient3scorefinish: "&a{ingredient-name} | {quantity}/{max-quantity}"
 
 #You must active the section : 'IsMessageEnter' for have region enter message.
 player-enter-message: "&e{player} &fa &erejoint &e{dungeons-name} &f!"
@@ -24,24 +24,24 @@ player-enter-message: "&e{player} &fa &erejoint &e{dungeons-name} &f!"
 player-left-message: "&e{player} &fa &equitté &e{dungeons-name} &f!"
 
 #If a player click on the npc while the quest is blocked, that private message is displayed.
-quest-blocked: "&e{npc-name} &8: &eOui ! &fJe suis si &econtent &fd'avoir &eça ! \n &e{npc-name} &8: &fOh, &eDesole aventurier &fje ne t'avais pas vu. &fSi tu &erecherches &fune mission &eheroique, &fj'ai &edéjà tout demande&f."
+quest-blocked: "&2{npc-name} &aMerci de votre aide, aventurier ! À présent laissez-moi travailler sur mon remède, vous me déconcentrez !"
 
 #If a player click on the npc while the quest is not launch and not blocked, that private message and that broadcast is displayed.
-msg-first: "&eMessis &8: &fBonjour, serait-il possible que tu m'&eaides &f? &eNon &f? Ahahaha, ce n'&eest pas &fune &equestion&f, c'&eest une obligation &f! \n&eMessis &8: &fAlors, j'&eaimerai &fque tu me &erapportes &fdes &eingredients&f s'il te plait. &fJe &evais &fmeme &eavertir &fles &egens ici&f. Le &epremier &fqui me &erapportera &fles &eingredients &faura une &erecompense&f, comme une &egraine magique &f!"
-broadcast-first: "&eMessis &8: &4&lALERTE ! &r&fJe veux faire quelques choses avec des &eingredients&f, des que &etout &fest &edonne &fle &epremier &fqui &eviendra aura &fune &egraine magique&f."
+msg-first: "&2{npc-name} &aNon mais vous allez me laisser bosser oui ! À quoi bon vivre dans ce coin paumé si c'est pour être dérangé tout le temps ! Bon, vous voulez quoi ? Un germe ensorcelé ? Oui bien sûr que j'en ai un, mais je ne vais pas vous le donner comme ça ! Dites... Je travaille actuellement sur un remède à la corruption et j'aurais besoin de plusieurs ingrédients. Si vous allez me les chercher, je vous donnerai mon germe ensorcelé. Apportez-moi &e5 champignons corrompus&a,&e 3 doses de miel d'abeilles géantes&a et &e5 fleurs lotus&a. Vous pourrez les trouver en vous promenant dans la forêt, ça me fera de l'air. Allez, houste !"
+broadcast-first: "&2&l[Donjon] &a&lMessis vous demande de lui rammener &e5 champignons corrompus&a,&e 3 doses de miel d'abeilles géantes&a et &e5 fleurs de lotus&a en échange de son &eGerme Ensorcelé."
 
 #If a player click on the npc while the quest is launched.
-start-msg: "&eMessis &8: &fTu as &etout &f? &eNon &f? Donc &econtinues &fa &echercher &fet ne peine pas..."
+start-msg: "&2{npc-name} &aC'est bon tu as tous les ingrédients ? Non ? EH BAH QU'EST-CE QUE TU FOUS LÀ RETOURNE LES CHERCHER !"
 
 #If a player collect a ingredient, that broadcast is displayed. 
-more-ingredients: "&eMessis &8: &e{ingredient-name} &fa été &erécupéré &f! &8(&7{quantity}&8/&7{max-quantity}&8)"
+more-ingredients: "&2&l[Donjon] &e&l{ingredient-name} &a&la été récupéré ! &f&l(&e&l{quantity}&a&l/&e&l{max-quantity}&f&l)"
 
 #If a player collect the last ingredient, that broadcast is displayed.
-ihave-all-ingredients: "&eMessis &8: &eBravo&f, j'&eai tout&f les &eingrédients&f, le &epremier &fà &eme parler aura &fla &egraine&f."
+ihave-all-ingredients: "&2&l[Donjon] &a&lTous les ingrédients ont étés récupérés. Retournez parler à Messis afin d'obtenir le germe ensorcelé."
 
 #If a player collect all ingredients in a categorie, that broadcast is displayed.
-ihave-all-ingredients-in-categorie: "&eMessis &8: &fJ'&eai tout &fles &eingrédients &fdu nom : '&e{ingredient-name}&f' !"
+ihave-all-ingredients-in-categorie: "&2&l[Donjon] &a&lTous les ingrédients de la catégorie &e&l'{ingredient-name}'&a&l ont étés récupérés !"
 
 #If a player click on the npc while all of ingredients have been found, that private message and that broadcast is displayed.
-finish-msg: "&eMessis &8: &eBravo &fa &etoi&f, tu as &ereussi &f!"
-finish-broadcast: "&eMessis &8: &eBravo &fa &e {player} &fd'avoir &efini &fla &equete &f!"
+finish-msg: "&2{npc-name} &aTiens, voilà ton germe. Maintenant du vent, j'ai du travail !"
+finish-broadcast: "&2&l[Donjon] &a&lLe germe a été récupéré auprès de Messis."

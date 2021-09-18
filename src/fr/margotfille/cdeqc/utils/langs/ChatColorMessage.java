@@ -1,9 +1,9 @@
 package fr.margotfille.cdeqc.utils.langs;
 
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 
 public class ChatColorMessage {
-	
+
 	/*
 	 * Translate message
 	 */

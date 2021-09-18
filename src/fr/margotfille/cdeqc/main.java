@@ -1,6 +1,10 @@
 package fr.margotfille.cdeqc;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -50,7 +54,7 @@ public class main extends JavaPlugin implements org.bukkit.event.Listener {
 		 */
 		QuestFiles config = QuestFiles.CONFIG;
 		config.create(getLogger());
-		
+
 		try (final Reader reader = Files.newBufferedReader(config.getFile().toPath(), StandardCharsets.UTF_8)) {
 			final Yaml yaml = new Yaml(new CustomClassLoaderConstructor(getClassLoader()));
 			yaml.setBeanAccess(BeanAccess.FIELD);
@@ -60,13 +64,13 @@ public class main extends JavaPlugin implements org.bukkit.event.Listener {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		/*
 		 * Lang file
 		 */
 		QuestFiles lang = QuestFiles.LANG;
 		lang.create(getLogger());
-		
+
 		/*
 		 * Set State
 		 */
@@ -76,6 +80,7 @@ public class main extends JavaPlugin implements org.bukkit.event.Listener {
 		 * Bukkit Commands
 		 */
 		getCommand("grabblocksquest").setExecutor(new GrabQuestCommand());
+		getCommand("setupquestmessis").setExecutor(new SetupCommand());
 		
 		/*
 		 * Bukkit Listeners
@@ -157,7 +162,7 @@ public class main extends JavaPlugin implements org.bukkit.event.Listener {
 							.replace(LangValues.QUANTITY.toName(), Integer.toString(ingredient1)));
 					ingredient1score.setScore(2);
 				}
-				
+
 				if(!(ingredient2 == getSettings().getIngredient2_number_max())) {
 					Score ingredient2score = obj.getScore(Lang.INGREDIENT2SCORE.get()
 							.replace(LangValues.INGREDIENT_NAME.toName(), Lang.INGREDIENT2NAME.get())
@@ -175,7 +180,7 @@ public class main extends JavaPlugin implements org.bukkit.event.Listener {
 							.replace(LangValues.QUANTITY.toName(), Integer.toString(ingredient2)) + "1".replace("1", " "));
 					ingredient2score.setScore(1);
 				}
-				
+
 				if(!(ingredient3 == getSettings().getIngredient3_number_max())) {
 					Score ingredient3score = obj.getScore(Lang.INGREDIENT3SCORE.get()
 							.replace(LangValues.INGREDIENT_NAME.toName(), Lang.INGREDIENT3NAME.get())
@@ -193,12 +198,12 @@ public class main extends JavaPlugin implements org.bukkit.event.Listener {
 							.replace(LangValues.QUANTITY.toName(), Integer.toString(ingredient3)) + "2".replace("2", "  "));
 					ingredient3score.setScore(0);
 				}
-				
+
 				player.setScoreboard(board);
 			} else {
 				board.clearSlot(DisplaySlot.SIDEBAR);
 				player.setScoreboard(board);
-				
+
 		        LobbyBoard boards = new LobbyBoard(player.getUniqueId());
 		        if (boards.hasID())
 		            boards.stop();
@@ -206,17 +211,62 @@ public class main extends JavaPlugin implements org.bukkit.event.Listener {
 		} else {
 			board.clearSlot(DisplaySlot.SIDEBAR);
 			player.setScoreboard(board);
-			
+
 	        LobbyBoard boards = new LobbyBoard(player.getUniqueId());
 	        if (boards.hasID())
 	            boards.stop();
 		}
 	}
+
+	//La Sauvegarde
+		public void saveResourceAs(String resourcePath, String outPutPath){
+			if(resourcePath == null || resourcePath.isEmpty()){
+				throw new IllegalArgumentException("ResourcePath cannot be null or empty");
+			}
+
+			InputStream in = getResource(resourcePath);
+			if(in == null){
+				throw new IllegalArgumentException("The Resource '" + resourcePath + "' cannot be found in plugin jar");
+			}
+
+			if(!getDataFolder().exists() && !getDataFolder().mkdir()){
+				getLogger().severe("Failed to make directory");
+			}
+
+			File outFile = new File(getDataFolder(), outPutPath);
+
+			try{
+				if(!outFile.exists()){
+					getLogger().info("The " + resourcePath + " was not found, creation in progress...");
+
+					OutputStream out = new FileOutputStream(outFile);
+					byte[] buf = new byte[1024];
+					int n;
+
+					while((n = in.read(buf)) >= 0){
+						out.write(buf, 0, n);
+					}
+
+					out.close();
+					in.close();
+
+					if(!outFile.exists()){
+						getLogger().severe("Unable to copy file");
+					}
+				}
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+		}
 	
 	/*
 	 * Getter Settings
 	 */
 	public Settings getSettings() {
 		return settings;
+	}
+	
+	public static main getINSTANCE() {
+		return INSTANCE;
 	}
 }

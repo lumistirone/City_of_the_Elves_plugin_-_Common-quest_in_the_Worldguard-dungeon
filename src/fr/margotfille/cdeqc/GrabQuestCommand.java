@@ -24,8 +24,8 @@ public class GrabQuestCommand implements CommandExecutor {
 			Player p = (Player)sender;
 			ChatColorPlayer cp = new ChatColorPlayer(p); 
 
-			if(p.hasPermission("cdeqc.grabscommands") || p.isOp() || p.hasPermission("'*'") || p.hasPermission("cdeqc.grabscommands.all")) {
-
+			if(p.hasPermission("cdeqc.grabscommands") || p.isOp() || p.hasPermission("'*'") || p.hasPermission("cdeqc.grabscommands.all") || p.hasPermission("cdeqc.all")) {
+				
 			} else {
 				cp.sendMessage(Lang.DONTHAVEPERMISSION.get());
 				return true;
@@ -115,11 +115,9 @@ public class GrabQuestCommand implements CommandExecutor {
 				}
 				
 				if(main.INSTANCE.ingredient2 >= main.INSTANCE.getSettings().getIngredient2_number_max()) {
-					if(main.INSTANCE.ingredient2 > main.INSTANCE.getSettings().getIngredient2_number_max()) {
-						main.INSTANCE.ingredient2 = main.INSTANCE.getSettings().getIngredient2_number_max();
-						
-						return true;
-					}
+					if(main.INSTANCE.ingredient2 > main.INSTANCE.getSettings().getIngredient2_number_max()) {main.INSTANCE.ingredient2 = main.INSTANCE.getSettings().getIngredient2_number_max();return true;}
+					
+					main.INSTANCE.ingredient2 = main.INSTANCE.getSettings().getIngredient2_number_max();
 					
 					if(main.INSTANCE.getSettings().getIhaveAllIngredientsInCategories()) {
 						ServerQuest.sendMessagePlayers(Lang.IHAVE_ALL_INGREDIENTS_IN_CATEGORIE.get()

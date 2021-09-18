@@ -28,6 +28,9 @@ public class ServerQuest {
 		questState = state;
 	}
 	
+	public static String ConfigText(String Text) {
+		return "'" + Text + "'"; 
+	}
 	/*
 	 * Send a Message for Players in the dungeons.
 	 */
@@ -71,17 +74,26 @@ public class ServerQuest {
 
 		ItemMeta im = i.getItemMeta();
 
-		if(DisplayName != null) im.setDisplayName(ChatColor.translateAlternateColorCodes('&', DisplayName)); 
-		if(DisplayName.equals("null")) im.setDisplayName(" "); 
+		if(DisplayName != null) {
+			assert im != null;
+			im.setDisplayName(ChatColor.translateAlternateColorCodes('&', DisplayName));
+		}
+
+		assert DisplayName != null;
+		if(DisplayName.equals("null")) {
+			im.setDisplayName(" ");
+		}
 		
-		String[] Lore1 = Lore.split(",");
-		ArrayList<String> Lore2 = new ArrayList<String>();
+		String[] Lore1 = Lore.split(";");
+		ArrayList<String> Lore2 = new ArrayList<>();
 		
 		for(String lore1 : Lore1) {
 			Lore2.add(ChatColor.translateAlternateColorCodes('&', lore1));
 		}
 		
-		if(Lore2 != null && !Lore2.isEmpty()) im.setLore(Lore2);
+		if(!Lore2.isEmpty()) {
+			im.setLore(Lore2);
+		}
 
 		if(main.INSTANCE.getSettings().getHasEnchantment()) {
 			if(enchantment != null) {
@@ -91,12 +103,19 @@ public class ServerQuest {
 					im.addEnchant(enchantment, 1, true);
 				}
 
-				if(hideEnchant = true) {
+				if(hideEnchant) {
 					im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 				}
 			}
 		}
-
+		
+		im.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		im.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+		im.addItemFlags(ItemFlag.HIDE_DYE);
+		im.addItemFlags(ItemFlag.HIDE_DESTROYS);
+		im.addItemFlags(ItemFlag.HIDE_PLACED_ON);
+		im.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+		
 		i.setItemMeta(im);
 
 		return i;

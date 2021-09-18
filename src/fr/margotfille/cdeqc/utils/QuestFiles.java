@@ -16,6 +16,7 @@ public enum QuestFiles {
 	CONFIG("config.yml"),
 	LANG("lang.yml");
 
+	private static QuestFiles INSTANCEFiles;
 	private final String fileName;
 	private final File dataFolder;
 	
@@ -25,6 +26,13 @@ public enum QuestFiles {
 	QuestFiles(String fileName) {
 		this.fileName = fileName;
 		this.dataFolder = main.INSTANCE.getDataFolder();
+	}
+	
+	/*
+	 * Get Instance
+	 */
+	public static QuestFiles getInstanceFiles() {
+		return INSTANCEFiles;
 	}
 	
 	/*
@@ -51,14 +59,14 @@ public enum QuestFiles {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/*
 	 * Get the file's name
 	 */
 	public String getFileName() {
 		return fileName;
 	}
-	
+
 	/*
 	 * Configuration file creation
 	 */
@@ -69,7 +77,7 @@ public enum QuestFiles {
 		
 		InputStream in = main.INSTANCE.getResource(fileName);
 		if(in == null) {
-			throw new IllegalArgumentException("La ressource n'a pas été trouvé : " + fileName + " dans le plugin");
+			throw new IllegalArgumentException("La ressource n'a pas été trouvée : " + fileName + " dans le plugin");
 		}
 		
 		if(!dataFolder.exists() && !dataFolder.mkdir()) {
@@ -80,7 +88,7 @@ public enum QuestFiles {
 		
 		if(!outFile.exists()) {
 			try {
-				main.INSTANCE.getLogger().info("Le fichier n'existe pas, nous le créons donc...");
+				main.INSTANCE.getLogger().info("Le fichier n'existe pas, nous le crÃ©ons donc...");
 				OutputStream out = new FileOutputStream(outFile);
 				byte[] buf = new byte[1024];
 				int n;
@@ -93,7 +101,7 @@ public enum QuestFiles {
 				in.close();
 				
 				if(!outFile.exists()) {
-					main.INSTANCE.getLogger().severe("On ne peut pas copier l'élément.");
+					main.INSTANCE.getLogger().severe("On ne peut pas copier l'Ã©lÃ©ment.");
 				}
 			} catch(IOException e) {
 				e.printStackTrace();

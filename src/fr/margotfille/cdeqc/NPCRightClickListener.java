@@ -1,14 +1,20 @@
 package fr.margotfille.cdeqc;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.bukkit.Bukkit;
-import org.bukkit.Sound;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
+import fr.margotfille.cdeqc.utils.QuestFiles;
 import fr.margotfille.cdeqc.utils.QuestState;
 import fr.margotfille.cdeqc.utils.ServerQuest;
+import fr.margotfille.cdeqc.utils.finishChrono;
+import fr.margotfille.cdeqc.utils.startChrono;
 import fr.margotfille.cdeqc.utils.langs.ChatColorPlayer;
 import fr.margotfille.cdeqc.utils.langs.Lang;
 import fr.margotfille.cdeqc.utils.langs.LangValues;
@@ -50,6 +56,8 @@ public class NPCRightClickListener implements Listener {
 		 * If the quest isn't start
 		 */
 		if(ServerQuest.isState(QuestState.NOTSTART)) {
+			new startChrono(p).runTaskTimer(main.getINSTANCE(), 0L, 1L);
+			
 			cp.sendMessage(Lang.MSG_FIRST.get()
 					.replace(LangValues.PLAYER.toName(), p.getName())
 					.replace(LangValues.NPC_NAME.toName(), NPCName));
@@ -60,25 +68,7 @@ public class NPCRightClickListener implements Listener {
 					main.INSTANCE.createBoard(online);
 					main.INSTANCE.start(online);
 				}
-			if(!(main.PlayerInDungeon.isEmpty()) || !(main.PlayerInDungeon == null)) {
-				for(Player players : main.PlayerInDungeon) {
-					ChatColorPlayer plc = new ChatColorPlayer(players);
-					
-					if(main.INSTANCE.getSettings().getNotBroadcastPlayerFirstStart() == true) {
-						plc.sendMessage(Lang.BROADCAST_FIRST.get()
-								.replace(LangValues.PLAYER.toName(), p.getName())
-								.replace(LangValues.NPC_NAME.toName(), NPCName));
-					} 
-					
-					if(main.INSTANCE.getSettings().getNotBroadcastPlayerFirstStart() == false && p != players) {
-						plc.sendMessage(Lang.BROADCAST_FIRST.get()
-								.replace(LangValues.PLAYER.toName(), p.getName())
-								.replace(LangValues.NPC_NAME.toName(), NPCName));
-					}
-				}
-
-				ServerQuest.playSoundPlayers(Sound.BLOCK_NOTE_BLOCK_GUITAR);
-			}
+			
 
 			return;
 		}
@@ -100,12 +90,31 @@ public class NPCRightClickListener implements Listener {
 		cp.sendMessage(Lang.FINISH_MSG.get()
 				.replace(LangValues.PLAYER.toName(), p.getName())
 				.replace(LangValues.NPC_NAME.toName(), NPCName));
-
-		if(main.INSTANCE.getSettings().getIsSendBroadcastCollect() == true) ServerQuest.sendMessagePlayers(Lang.FINISH_BROADCAST.get().replace(LangValues.PLAYER.toName(), p.getName()).replace(LangValues.NPC_NAME.toName(), NPCName));
-
+		
+		new finishChrono(p).runTaskTimer(main.getINSTANCE(), 0L, 1L);
+		
 		p.getInventory().addItem(ServerQuest.createItem(main.INSTANCE.getSettings().getMaterial(), main.INSTANCE.getSettings().getUnite(), main.INSTANCE.getSettings().getDisplayName(), main.INSTANCE.getSettings().getLore(), Enchantment.LUCK, 1, main.INSTANCE.getSettings().getHideEnchantment()));
-
+		
+		try {
+			QuestFiles configname = QuestFiles.CONFIG;
+			File configFile = configname.getFile();
+			FileConfiguration config = configname.getConfig();
+			config.set("IsBlocked", true);
+			config.save(configFile);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
 		main.INSTANCE.getSettings().setIsBlocked(true);
+		
+		/*
+		 * Yaml yaml = new Yaml();
+		 * InputStream inputStream = this.getClass()
+		 *  .getClassLoader()
+		 *  .getResourceAsStream(QuestFiles.getInstanceFiles().getFileName());
+		 * Settings customer = yaml.load(inputStream);
+		 */
+		
 		return;
 		
 	}

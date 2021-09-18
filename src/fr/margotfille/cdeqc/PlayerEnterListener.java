@@ -13,12 +13,7 @@ import fr.margotfille.cdeqc.utils.langs.LangValues;
 public class PlayerEnterListener implements Listener {
 	@EventHandler
 	public void onRegionEnter(RegionEnterEvent e) {
-		if(!(e.getPlayer() instanceof Player)) {
-			return;
-		}
-		
 		Player p = e.getPlayer();
-
 		String regionName = e.getRegion().getId();
 		
 		/*

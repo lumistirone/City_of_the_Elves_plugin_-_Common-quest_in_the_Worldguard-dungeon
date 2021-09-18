@@ -14,6 +14,8 @@ public class Settings {
 	private int Ingredient1_number_max;
 	private int Ingredient2_number_max;
 	private int Ingredient3_number_max;
+	private int start_tick;
+	private int finish_tick;
 	
 	private boolean IsBlocked;
 	private boolean IsMessageEnter;
@@ -190,5 +192,25 @@ public class Settings {
 	
 	public void setNotBroadcastPlayerFirstStart(Boolean NotBroadcastPlayerFirstStart) {
 		this.NotBroadcastPlayerFirstStart = NotBroadcastPlayerFirstStart;
+	}
+	
+	/*public void arrayGetAll(List<Object> all) {
+	*	all.add(getWorldguardZone()); all.add(getHowVerify()); all.add(getNPCName()); all.add(getNPCId()); all.add(getMaterial()); all.add(getUnite()); all.add(getDisplayName()); all.add(getLore()); all.add(getHasEnchantment()); all.add(getHideEnchantment()); all.add(getIngredient1_number_max()); all.add(getIngredient2_number_max()); all.add(getIngredient3_number_max()); all.add(getIsBlocked()); all.add(getIsMessageEnter()); all.add(getIsMessageLeft())
+	}*/
+	
+	public int getStartTick() {
+		return start_tick;
+	}
+	
+	public void setStartTick(int tick) {
+		this.start_tick = tick;
+	}
+	
+	public int getFinishTick() {
+		return finish_tick;
+	}
+	
+	public void setFinishTick(int tick) {
+		this.finish_tick = tick;
 	}
 }

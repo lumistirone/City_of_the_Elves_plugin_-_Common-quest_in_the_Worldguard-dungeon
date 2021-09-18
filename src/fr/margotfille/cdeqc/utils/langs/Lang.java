@@ -81,4 +81,14 @@ public enum Lang {
 
 		return ChatColor.translateAlternateColorCodes('&', value);
 	}
+	
+	/*
+	 * Set Value From File
+	 */
+	public void setFromFile(Object Value, String key) {
+		FileConfiguration config = QuestFiles.LANG.getConfig();
+		String keyt = key.toLowerCase().replace('_', '-');
+		
+		config.set(keyt, Value);
+	}
 }

@@ -11,7 +11,7 @@ public enum LangValues {
 	QUANTITY("quantity"),
 	MAX_QUANTITY("max-quantity");
 	
-	private String name;
+	private final String name;
 	
 	/*
 	 * Constructor
