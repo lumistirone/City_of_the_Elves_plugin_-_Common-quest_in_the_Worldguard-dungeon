@@ -30,6 +30,9 @@ Ingredient1_number_max: 5 #The maximum number of ingredients 1.
 Ingredient2_number_max: 3 #The maximum number of ingredients 2.
 Ingredient3_number_max: 5 #The maximum number of ingredients 3.
 
+#The command executed when the quest is finished.
+final_command: 'execute in minecraft:donjon run setblock 158 63 1276 minecraft:air'
+
 #If it's true, nobody can do the quest. The quest is blocked.
 IsBlocked: false
 #If it's true, you activate the dungeon enter message.

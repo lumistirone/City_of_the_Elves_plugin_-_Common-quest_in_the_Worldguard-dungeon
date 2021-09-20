@@ -28,7 +28,7 @@ public class NPCRightClickListener implements Listener {
 		Player p = e.getClicker();
 		NPC entity = e.getNPC();
 		int NPCId = entity.getId();
-		String NPCName = entity.getName();
+		String NPCName = entity.getName().replace('§', '&');
 		ChatColorPlayer cp = new ChatColorPlayer(p);
 		
 		/*
@@ -105,15 +105,9 @@ public class NPCRightClickListener implements Listener {
 			e1.printStackTrace();
 		}
 		
-		main.INSTANCE.getSettings().setIsBlocked(true);
+		Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), main.INSTANCE.getSettings().getFinalCommand());
 		
-		/*
-		 * Yaml yaml = new Yaml();
-		 * InputStream inputStream = this.getClass()
-		 *  .getClassLoader()
-		 *  .getResourceAsStream(QuestFiles.getInstanceFiles().getFileName());
-		 * Settings customer = yaml.load(inputStream);
-		 */
+		main.INSTANCE.getSettings().setIsBlocked(true);
 		
 		return;
 		

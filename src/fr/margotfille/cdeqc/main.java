@@ -25,6 +25,9 @@ import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.CustomClassLoaderConstructor;
 import org.yaml.snakeyaml.introspector.BeanAccess;
 
+import com.sk89q.worldguard.WorldGuard;
+
+import fr.margotfille.cdeqc.events.CrossBoundaryListener;
 import fr.margotfille.cdeqc.utils.LobbyBoard;
 import fr.margotfille.cdeqc.utils.QuestFiles;
 import fr.margotfille.cdeqc.utils.QuestState;
@@ -42,7 +45,7 @@ public class main extends JavaPlugin implements org.bukkit.event.Listener {
 	int ingredient1 = 0;
 	int ingredient2 = 0;
 	int ingredient3 = 0;
-	
+
 	//ArrayList for all Players in the dungeon
 	public static List<Player> PlayerInDungeon = new ArrayList<Player>();
 
@@ -77,6 +80,11 @@ public class main extends JavaPlugin implements org.bukkit.event.Listener {
 		ServerQuest.setState(QuestState.NOTSTART);
 		
 		/*
+		 * WorldGuard Event Handler
+		 */
+		WorldGuard.getInstance().getPlatform().getSessionManager().registerHandler(CrossBoundaryListener.FACTORY, null);
+
+		/*
 		 * Bukkit Commands
 		 */
 		getCommand("grabblocksquest").setExecutor(new GrabQuestCommand());
@@ -85,9 +93,10 @@ public class main extends JavaPlugin implements org.bukkit.event.Listener {
 		/*
 		 * Bukkit Listeners
 		 */
-		this.getServer().getPluginManager().registerEvents(new PlayerEnterListener(), this);
-		this.getServer().getPluginManager().registerEvents(new PlayerLeftListener(), this);
-
+		
+		this.getServer().getPluginManager().registerEvents(new RegionEnterListener(), this);
+		this.getServer().getPluginManager().registerEvents(new RegionLeftListener(), this);
+		
 		this.getServer().getPluginManager().registerEvents(new NPCRightClickListener(), this);
 
 		this.getServer().getPluginManager().registerEvents(this, this);

@@ -204,7 +204,7 @@ public class GrabQuestCommand implements CommandExecutor {
 				}
 			}
 		}
-
+		
 		return false;
 	}
 }

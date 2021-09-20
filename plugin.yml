@@ -2,7 +2,7 @@ name: QueteMessisCiteDesElfes
 main: fr.margotfille.cdeqc.main
 version: 1.16
 author: margotfille
-depend: [WorldGuard, Citizens]
+depend: [WorldGuard, Citizens, WorldEdit]
 api-version: 1.16
 commands:
   grabblocksquest:

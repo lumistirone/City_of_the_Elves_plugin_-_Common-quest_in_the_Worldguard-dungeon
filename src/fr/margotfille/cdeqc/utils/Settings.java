@@ -16,6 +16,7 @@ public class Settings {
 	private int Ingredient3_number_max;
 	private int start_tick;
 	private int finish_tick;
+	private String final_command;
 	
 	private boolean IsBlocked;
 	private boolean IsMessageEnter;
@@ -33,6 +34,14 @@ public class Settings {
 	
 	private Boolean MoreIngredient;
 	private Boolean IhaveAllIngredientsInCategories;
+	
+	public String getFinalCommand() {
+		return final_command;
+	}
+	
+	public void setFinalCommand(String final_command) {
+		this.final_command = final_command;
+	}
 	
 	public Boolean getMoreIngredient() {
 		return MoreIngredient;
